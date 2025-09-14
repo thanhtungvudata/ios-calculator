@@ -117,11 +117,10 @@ wheels/
 *.egg
 MANIFEST
 
-# Cursor specific (keep these for development context)
-# .cursor/
-
-# Keep memory-bank for development documentation
-# memory-bank/
+# Development methodology folders (internal use only)
+.cursor/
+custom_modes/
+memory-bank/
 
 # Keep docs for project documentation
 # docs/
