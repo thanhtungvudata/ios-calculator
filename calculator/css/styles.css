@@ -1,0 +1,599 @@
+/* ===================================================================
+   CALCULATOR STYLES - iOS-Inspired Design System
+   
+   Based on Creative Phase Decisions:
+   - Phase 1: Visual Design System (Color, Typography, Spacing)
+   - Phase 2: UI/UX Design (Layout, Responsive, Accessibility)  
+   - Phase 3: Interaction Design (Animations, Performance)
+   =================================================================== */
+
+/* ===================================================================
+   DESIGN SYSTEM - CSS Custom Properties (Creative Phase 1)
+   =================================================================== */
+
+:root {
+  /* Color Palette - iOS-Inspired Custom Colors */
+  --calc-bg-primary: #1C1C1E;        /* Main calculator background */
+  --calc-bg-secondary: #2C2C2E;      /* App background */
+  
+  /* Button Colors */
+  --btn-number: #505050;              /* Number buttons (7,8,9,etc) */
+  --btn-number-hover: #5A5A5A;       /* Number button hover */
+  --btn-number-active: #404040;      /* Number button pressed */
+  
+  --btn-function: #A6A6A6;           /* Function buttons (AC, +/-, %) */
+  --btn-function-hover: #B0B0B0;     /* Function button hover */
+  --btn-function-active: #9C9C9C;    /* Function button pressed */
+  
+  --btn-operation: #FF9500;          /* Operation buttons (+,-,×,÷,=) */
+  --btn-operation-hover: #FFB143;    /* Operation button hover */
+  --btn-operation-active: #E6850E;   /* Operation button pressed */
+  --btn-operation-selected: #FFFFFF; /* Operation button when selected */
+  
+  /* Text Colors */
+  --text-primary: #FFFFFF;           /* Main display text */
+  --text-number: #FFFFFF;            /* Number button text */
+  --text-function: #000000;          /* Function button text */
+  --text-operation: #FFFFFF;         /* Operation button text */
+  --text-operation-selected: #FF9500; /* Selected operation text */
+  
+  /* Display Colors */
+  --display-bg: #1C1C1E;            /* Display background */
+  --display-text: #FFFFFF;          /* Display text */
+  --display-text-secondary: #8E8E93; /* Secondary display text */
+  --display-error: #FF3B30;         /* Error state color */
+  
+  /* Typography System - Apple System Fonts */
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --font-buttons: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  
+  /* Responsive Font Sizes */
+  --text-display-large: clamp(48px, 8vw, 72px);
+  --text-display-medium: clamp(32px, 6vw, 48px);
+  --text-button-large: 32px;
+  --text-button-medium: 24px;
+  --text-button-small: 20px;
+  
+  /* Font Weights */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  
+  /* Spacing System - 8px Base Unit */
+  --space-unit: 8px;
+  --space-xs: calc(var(--space-unit) * 0.5);  /* 4px */
+  --space-sm: var(--space-unit);              /* 8px */
+  --space-md: calc(var(--space-unit) * 2);    /* 16px */
+  --space-lg: calc(var(--space-unit) * 3);    /* 24px */
+  --space-xl: calc(var(--space-unit) * 4);    /* 32px */
+  --space-xxl: calc(var(--space-unit) * 6);   /* 48px */
+  
+  /* Component Specific Spacing */
+  --calc-padding: var(--space-lg);
+  --button-gap: var(--space-md);
+  --display-padding: var(--space-xl);
+  
+  /* Button Design System */
+  --btn-size: 72px;
+  --btn-size-large: calc(var(--btn-size) * 2 + var(--button-gap)); /* For "0" button */
+  
+  /* Border Radius */
+  --btn-radius: 50%;
+  --btn-radius-large: 36px; /* For "0" button */
+  
+  /* Shadows */
+  --btn-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --btn-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --btn-shadow-active: 0 1px 4px rgba(0, 0, 0, 0.2);
+  
+  /* Animation System (Creative Phase 3) */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Duration Scale */
+  --duration-instant: 0.1s;
+  --duration-fast: 0.15s;
+  --duration-medium: 0.25s;
+  --duration-slow: 0.35s;
+  --duration-slower: 0.5s;
+  
+  /* Interaction-Specific Timings */
+  --btn-press-duration: var(--duration-fast);
+  --btn-release-duration: var(--duration-medium);
+  --display-update-duration: var(--duration-medium);
+  --error-animation-duration: var(--duration-slower);
+  
+  /* Layout Grid System */
+  --calc-width: 384px;
+  --calc-max-width: 480px;
+  --calc-min-width: 320px;
+  
+  /* Display Area */
+  --display-height: 120px;
+  --display-min-height: 80px;
+}
+
+/* ===================================================================
+   RESPONSIVE BREAKPOINTS (Creative Phase 2)
+   =================================================================== */
+
+/* Mobile Breakpoint (≤480px) */
+@media (max-width: 480px) {
+  :root {
+    --btn-size: 60px;
+    --button-gap: 12px;
+    --calc-padding: 16px;
+    --calc-width: 320px;
+  }
+}
+
+/* Tablet Breakpoint (481-768px) - Default values */
+@media (min-width: 481px) and (max-width: 768px) {
+  :root {
+    --btn-size: 72px;
+    --button-gap: 16px;
+    --calc-padding: 24px;
+    --calc-width: 384px;
+  }
+}
+
+/* Desktop Breakpoint (≥769px) */
+@media (min-width: 769px) {
+  :root {
+    --btn-size: 80px;
+    --button-gap: 20px;
+    --calc-padding: 32px;
+    --calc-width: 480px;
+  }
+}
+
+/* ===================================================================
+   ACCESSIBILITY SUPPORT (Creative Phase 2)
+   =================================================================== */
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --btn-number: #000000;
+    --btn-function: #FFFFFF;
+    --text-function: #000000;
+    --btn-operation: #FF6B00; /* Higher contrast orange */
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .button {
+    will-change: auto !important;
+  }
+}
+
+/* ===================================================================
+   BASE STYLES
+   =================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-display);
+  background-color: var(--calc-bg-secondary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  
+  /* Prevent zoom on double-tap (mobile) */
+  touch-action: manipulation;
+}
+
+/* ===================================================================
+   CALCULATOR LAYOUT (Creative Phase 2)
+   =================================================================== */
+
+.app {
+  width: 100%;
+  max-width: var(--calc-max-width);
+  min-width: var(--calc-min-width);
+}
+
+.calculator {
+  background-color: var(--calc-bg-primary);
+  border-radius: 20px;
+  padding: var(--calc-padding);
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ===================================================================
+   DISPLAY AREA (Creative Phase 1 & 3)
+   =================================================================== */
+
+.display-container {
+  margin-bottom: var(--button-gap);
+}
+
+.display {
+  background-color: var(--display-bg);
+  color: var(--display-text);
+  font-family: var(--font-display);
+  font-size: var(--text-display-large);
+  font-weight: var(--weight-light);
+  text-align: right;
+  padding: var(--display-padding);
+  border-radius: 10px;
+  min-height: var(--display-min-height);
+  height: var(--display-height);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  word-break: break-all;
+  
+  /* Hardware Acceleration (Creative Phase 3) */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  
+  /* Display Animations */
+  transition: 
+    font-size var(--display-update-duration) var(--ease-out-quart),
+    color var(--duration-fast) ease-out,
+    transform var(--duration-medium) var(--ease-out-quart);
+}
+
+/* Display Animation States */
+.display--input-active {
+  transform: scale(1.02) translateZ(0);
+  transition-duration: var(--duration-fast);
+}
+
+.display--result-ready {
+  animation: result-highlight var(--duration-slow) var(--ease-out-back);
+}
+
+.display--error {
+  color: var(--display-error);
+  animation: error-shake var(--error-animation-duration) var(--ease-out-quart);
+}
+
+/* Display Animations */
+@keyframes result-highlight {
+  0% { transform: scale(1) translateZ(0); }
+  50% { transform: scale(1.05) translateZ(0); }
+  100% { transform: scale(1) translateZ(0); }
+}
+
+@keyframes error-shake {
+  0%, 100% { transform: translateX(0) translateZ(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-8px) translateZ(0); }
+  20%, 40%, 60%, 80% { transform: translateX(8px) translateZ(0); }
+}
+
+/* ===================================================================
+   BUTTON GRID LAYOUT (Creative Phase 2)
+   =================================================================== */
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--button-gap);
+}
+
+.button-row {
+  display: contents; /* Allow grid items to participate in parent grid */
+}
+
+/* ===================================================================
+   BUTTON DESIGN SYSTEM (Creative Phase 1 & 3)
+   =================================================================== */
+
+.button {
+  width: var(--btn-size);
+  height: var(--btn-size);
+  border-radius: var(--btn-radius);
+  border: none;
+  font-family: var(--font-buttons);
+  font-size: var(--text-button-large);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  box-shadow: var(--btn-shadow);
+  
+  /* Hardware Acceleration (Creative Phase 3) */
+  transform: scale(1) translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+  
+  /* Animation System */
+  transition: 
+    transform var(--btn-release-duration) var(--ease-out-quart),
+    background-color var(--duration-fast) ease-out,
+    box-shadow var(--duration-fast) ease-out;
+  
+  /* Prevent text selection */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  
+  /* Prevent tap highlight on mobile */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Button Interaction States (Creative Phase 3) */
+
+/* Hover State (Desktop Only) */
+@media (hover: hover) {
+  .button:hover {
+    transform: scale(1.05) translateZ(0);
+    box-shadow: var(--btn-shadow-hover);
+    transition-duration: var(--duration-fast);
+  }
+}
+
+/* Active/Press State */
+.button:active,
+.button.pressed {
+  transform: scale(0.95) translateZ(0);
+  transition-duration: var(--btn-press-duration);
+  transition-timing-function: var(--ease-in-out-circ);
+}
+
+/* Focus State (Accessibility) */
+.button:focus-visible {
+  outline: 3px solid #007AFF;
+  outline-offset: 2px;
+  transform: scale(1.02) translateZ(0);
+}
+
+/* ===================================================================
+   BUTTON COLOR VARIANTS (Creative Phase 1)
+   =================================================================== */
+
+/* Number Buttons */
+.button.number {
+  background-color: var(--btn-number);
+  color: var(--text-number);
+}
+
+.button.number:hover {
+  background-color: var(--btn-number-hover);
+}
+
+.button.number:active,
+.button.number.pressed {
+  background-color: var(--btn-number-active);
+}
+
+/* Function Buttons */
+.button.function {
+  background-color: var(--btn-function);
+  color: var(--text-function);
+}
+
+.button.function:hover {
+  background-color: var(--btn-function-hover);
+}
+
+.button.function:active,
+.button.function.pressed {
+  background-color: var(--btn-function-active);
+}
+
+/* Operation Buttons */
+.button.operation {
+  background-color: var(--btn-operation);
+  color: var(--text-operation);
+  position: relative;
+  overflow: hidden;
+}
+
+.button.operation:hover {
+  background-color: var(--btn-operation-hover);
+}
+
+.button.operation:active,
+.button.operation.pressed {
+  background-color: var(--btn-operation-active);
+}
+
+/* Operation Button Selection Animation (Creative Phase 3) */
+.button.operation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--btn-operation-selected);
+  transform: scale(0);
+  transition: transform var(--duration-medium) var(--ease-out-back);
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.button.operation.selected::before {
+  transform: scale(1);
+}
+
+.button.operation.selected {
+  color: var(--text-operation-selected);
+}
+
+.button.operation.selected span {
+  position: relative;
+  z-index: 2;
+}
+
+/* Operation Button Ripple Effect (Creative Phase 3) */
+.button.operation::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: 
+    width var(--duration-medium) ease-out,
+    height var(--duration-medium) ease-out,
+    opacity var(--duration-medium) ease-out;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.button.operation:active::after {
+  width: 100px;
+  height: 100px;
+  opacity: 1;
+  transition-duration: var(--duration-fast);
+}
+
+/* ===================================================================
+   SPECIAL BUTTON STYLES (Creative Phase 2)
+   =================================================================== */
+
+/* Zero Button - Spans 2 Columns */
+.button.zero {
+  grid-column: span 2;
+  border-radius: var(--btn-radius-large);
+  width: auto;
+}
+
+/* Equals Button - Special Styling */
+.button.equals {
+  font-weight: var(--weight-semibold);
+}
+
+/* ===================================================================
+   KEYBOARD INTERACTION FEEDBACK (Creative Phase 3)
+   =================================================================== */
+
+.button--keyboard-active {
+  transform: scale(0.95) translateZ(0);
+  transition-duration: var(--duration-instant);
+}
+
+/* Visual feedback for keyboard shortcuts */
+.calculator--keyboard-mode .button {
+  position: relative;
+}
+
+.calculator--keyboard-mode .button[data-key]::before {
+  content: attr(data-key);
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #007AFF;
+  color: white;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all var(--duration-fast) ease-out;
+  z-index: 10;
+}
+
+.calculator--keyboard-mode:hover .button[data-key]::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===================================================================
+   LOADING AND PROCESSING STATES (Creative Phase 3)
+   =================================================================== */
+
+.calculator--processing .display::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translateY(-50%);
+}
+
+@keyframes spin {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+/* Button Disabled State */
+.button:disabled {
+  opacity: 0.5;
+  transform: scale(0.98) translateZ(0);
+  pointer-events: none;
+  transition: all var(--duration-medium) ease-out;
+}
+
+/* ===================================================================
+   RESPONSIVE ADJUSTMENTS (Creative Phase 2)
+   =================================================================== */
+
+/* Mobile Specific Adjustments */
+@media (max-width: 480px) {
+  .display {
+    font-size: clamp(36px, 7vw, 48px);
+    padding: calc(var(--display-padding) * 0.75);
+  }
+  
+  .button {
+    font-size: var(--text-button-medium);
+  }
+}
+
+/* Desktop Specific Adjustments */
+@media (min-width: 769px) {
+  .calculator {
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+  }
+  
+  .button {
+    font-size: var(--text-button-large);
+  }
+}
+
+/* ===================================================================
+   PRINT STYLES
+   =================================================================== */
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .calculator {
+    background: white;
+    border: 2px solid black;
+    box-shadow: none;
+  }
+  
+  .button {
+    border: 1px solid black;
+    box-shadow: none;
+  }
+}

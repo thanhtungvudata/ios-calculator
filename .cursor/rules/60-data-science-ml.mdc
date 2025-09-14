@@ -1,0 +1,18 @@
+---
+description: "DS/ML specifics: reproducibility, notebooks, experiment tracking"
+globs: ["notebooks/**/*.ipynb", "src/**/*.py"]
+alwaysApply: false
+---
+
+## Reproducibility
+- YOU SHOULD set seeds (numpy/random/torch/sklearn) & log versions.
+- YOU SHOULD keep notebooks lightweight; move repeatable logic into `src/`.
+- YOU SHOULD save artifacts to S3 with metadata; never to the repo.
+
+## Evaluation
+- YOU MUST separate training, evaluation, & inference modules.
+- YOU SHOULD persist metrics; prefer JSONL/Parquet logs for dashboards.
+
+## Serving
+- Inference code MUST be pure & thread-safe; NO global state.
+- YOU MUST validate payloads & return types; YOU SHOULD add golden tests for key endpoints.

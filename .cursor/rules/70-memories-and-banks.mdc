@@ -1,0 +1,27 @@
+---
+description: "Use Cursor Memories + curated 'Memory Banks' for context with minimal tokens"
+globs:
+alwaysApply: true
+---
+
+## What Memories are
+- Memories are automatically generated, project-scoped rules that Cursor creates from chat. They maintain context across sessions but require your approval to save.
+
+## How we use them
+- YOU MUST keep memories **short, factual, actionable** (naming conventions, data contracts, endpoint shapes).
+- YOU SHOULD never store auth secrets, PII, keys, or long data blobs.
+- YOU SHOULD curate memories into **named banks** (short, separate rules) to reduce token footprint:
+- `bank-glossary.mdc`: domain terms & acronyms
+- `bank-aws-infra.mdc`: ARNs, resource names (sanitised), deployment lanes
+- `bank-data-contracts.mdc`: schemas, field semantics
+- `bank-process.mdc`: TDD checklist, PR checklist
+
+## Workflow
+1) When new tribal knowledge emerges, ask: “Should this be a memory?” If yes, create/approve a TELEGRAPHIC memory or a new bank file.
+2) YOU SHOULD prefer linking repo files via `@path/to/file` over copying long content.
+3) YOU SHOULD periodically PRUNE or MERGE memories > 500 lines.
+
+## Prompts
+- “Remember this for later” → create a concise, rule-like memory draft for my approval.
+- “Store this in bank-glossary” → propose a small addition & show diff to that bank file.
+(Reference: official docs on Memories & Rule best practices.)

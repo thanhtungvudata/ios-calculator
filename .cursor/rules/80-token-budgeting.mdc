@@ -1,0 +1,19 @@
+---
+description: "Token thrift: keep prompts lean, rely on files, & trim indexing"
+globs:
+alwaysApply: true
+---
+## Keep context small
+- YOU SHOULD prefer `@filename` references over pasting code.
+- Summarise: YOU MUST ask to compress long context into short bullets before proceeding.
+- YOU MUST split rules by topic; avoid single giant rules file.
+
+## Indexing hygiene
+- YOU SHOULD maintain `.cursorignore` to exclude datasets, models, binaries, notebooks’ checkpoints, & anything secret.
+- YOU SHOULD use `.cursorindexingignore` to suppress noisy files from search while keeping them accessible to the AI.
+
+## Output controls
+- For long diffs, YOU SHOULD propose patches per file instead of one massive blob.
+- YOU SHOULD prefer stepwise edits with tests running between steps.
+
+(Reference: Cursor Ignore Files & Rules best practices.)

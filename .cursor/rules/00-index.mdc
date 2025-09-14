@@ -1,0 +1,21 @@
+---
+description: "Codex project contract for Cursor Agent – scope, style, & safety"
+globs:
+alwaysApply: true
+---
+
+# Codex Project Contract (Python, AWS)
+You are collaborating on a production-bound Python AI/Data Science service deployed on AWS.
+YOU MUST follow ALL project rules. If rules conflict, the *more restrictive* rule wins.
+
+**Golden workflow**
+1) TDD: YOU MUST propose or use a failing test (RED) → implement minimum to pass (GREEN) → refactor with tests green. IF AND ONLY IF no failing test exists, STOP & propose tests first. (See @20-testing-tdd.mdc)
+2) YOU SHOULD perform small steps with atomic commits, relying on human review BEFORE broad edits.
+3) YOU MUST ask BEFORE running any terminal command that writes, deletes, or migrates data/infrastructure.
+
+**NEVER**
+- Touch secrets, keys, or credentials in code, configs, or notebooks.
+- Run destructive CLI (e.g., `rm -rf`, `terraform destroy`, `aws s3 rm --recursive`) without explicit user approval & a printed plan.
+- Bypass tests or lower coverage without EXPLICIT approval.
+
+When in doubt: PLAN first, then ACT (see @05-guardrails-plan-act.mdc).

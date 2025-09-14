@@ -1,0 +1,20 @@
+---
+description: "Enforce TDD, pytest patterns, parametrisation, fixtures"
+globs: ["tests/**/*.py", "src/**/*.py"]
+alwaysApply: false
+---
+
+## TDD gate
+- YOU MUST: If no failing test is present, STOP. Propose new tests that encode the acceptance criteria.
+- YOU SHOULD: Implement only enough code to pass the test; then propose refactors while tests remain green.
+
+## Pytest conventions
+- YOU SHOULD use `@pytest.mark.parametrise` to cover edge cases succinctly.
+- YOU SHOULD prefer fixtures & `hypothesis` strategies for setup; YOU SHOULD use factories for complex objects.
+- YOU SHOULD maintain high signal: avoid brittle tests that depend on external services; mock IO & AWS clients, while EXPLICITLY demarcating mocks.
+
+## Coverage & speed
+- YOU MUST aim for ≥80% line & branch coverage for `src/` (exceptions must be justified).
+- YOU SHOULD keep unit tests <1s each; integration tests may be slower but must run in CI.
+
+(Reference: official pytest docs & parametrisation guides.)

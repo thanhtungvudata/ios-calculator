@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern iOS-inspired calculator with dark theme and smooth animations">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <main class="app" role="main">
+        <div class="calculator" role="application" aria-label="Calculator">
+            <!-- Display Area -->
+            <div class="display-container">
+                <div 
+                    class="display" 
+                    id="display"
+                    role="textbox"
+                    aria-live="polite"
+                    aria-label="Calculator display"
+                    aria-readonly="true"
+                >0</div>
+            </div>
+
+            <!-- Button Grid -->
+            <div class="buttons" role="grid" aria-label="Calculator buttons">
+                <!-- Row 1: Functions and Division -->
+                <div class="button-row" role="row">
+                    <button 
+                        class="button function" 
+                        data-action="clear"
+                        data-key="Escape"
+                        aria-label="All Clear"
+                        role="gridcell"
+                    >AC</button>
+                    <button 
+                        class="button function" 
+                        data-action="toggle-sign"
+                        data-key="±"
+                        aria-label="Toggle Sign"
+                        role="gridcell"
+                    >+/-</button>
+                    <button 
+                        class="button function" 
+                        data-action="percentage"
+                        data-key="%"
+                        aria-label="Percentage"
+                        role="gridcell"
+                    >%</button>
+                    <button 
+                        class="button operation" 
+                        data-action="operation"
+                        data-operation="÷"
+                        data-key="/"
+                        aria-label="Divide"
+                        role="gridcell"
+                    >÷</button>
+                </div>
+
+                <!-- Row 2: 7, 8, 9, Multiply -->
+                <div class="button-row" role="row">
+                    <button 
+                        class="button number" 
+                        data-action="number"
+                        data-number="7"
+                        data-key="7"
+                        aria-label="Seven"
+                        role="gridcell"
+                    >7</button>
+                    <button 
+                        class="button number" 
+                        data-action="number"
+                        data-number="8"
+                        data-key="8"
+                        aria-label="Eight"
+                        role="gridcell"
+                    >8</button>
+                    <button 
+                        class="button number" 
+                        data-action="number"
+                        data-number="9"
+                        data-key="9"
+                        aria-label="Nine"
+                        role="gridcell"
+                    >9</button>
+                    <button 
+                        class="button operation" 
+                        data-action="operation"
+                        data-operation="×"
+                        data-key="*"
+                        aria-label="Multiply"
+                        role="gridcell"
+                    >×</button>
+                </div>
+
+                <!-- Row 3: 4, 5, 6, Subtract -->
+                <div class="button-row" role="row">
+                    <button 
+                        class="button number" 
+                        data-action="number"
+                        data-number="4"
+                        data-key="4"
+                        aria-label="Four"
+                        role="gridcell"
+                    >4</button>
+                    <button 
+                        class="button number" 
+                        data-action="number"
+                        data-number="5"
+                        data-key="5"
+                        aria-label="Five"
+                        role="gridcell"
+                    >5</button>
+                    <button 
+                        class="button number" 
+                        data-action="number"
+                        data-number="6"
+                        data-key="6"
+                        aria-label="Six"
+                        role="gridcell"
+                    >6</button>
+                    <button 
+                        class="button operation" 
+                        data-action="operation"
+                        data-operation="-"
+                        data-key="-"
+                        aria-label="Subtract"
+                        role="gridcell"
+                    >-</button>
+                </div>
+
+                <!-- Row 4: 1, 2, 3, Add -->
+                <div class="button-row" role="row">
+                    <button 
+                        class="button number" 
+                        data-action="number"
+                        data-number="1"
+                        data-key="1"
+                        aria-label="One"
+                        role="gridcell"
+                    >1</button>
+                    <button 
+                        class="button number" 
+                        data-action="number"
+                        data-number="2"
+                        data-key="2"
+                        aria-label="Two"
+                        role="gridcell"
+                    >2</button>
+                    <button 
+                        class="button number" 
+                        data-action="number"
+                        data-number="3"
+                        data-key="3"
+                        aria-label="Three"
+                        role="gridcell"
+                    >3</button>
+                    <button 
+                        class="button operation" 
+                        data-action="operation"
+                        data-operation="+"
+                        data-key="+"
+                        aria-label="Add"
+                        role="gridcell"
+                    >+</button>
+                </div>
+
+                <!-- Row 5: 0, Decimal, Equals -->
+                <div class="button-row" role="row">
+                    <button 
+                        class="button number zero" 
+                        data-action="number"
+                        data-number="0"
+                        data-key="0"
+                        aria-label="Zero"
+                        role="gridcell"
+                    >0</button>
+                    <button 
+                        class="button number" 
+                        data-action="decimal"
+                        data-key="."
+                        aria-label="Decimal point"
+                        role="gridcell"
+                    >.</button>
+                    <button 
+                        class="button operation equals" 
+                        data-action="equals"
+                        data-key="Enter"
+                        aria-label="Equals"
+                        role="gridcell"
+                    >=</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/calculator.js"></script>
+</body>
+</html>
