@@ -2,7 +2,7 @@
 
 A modern, responsive calculator application with iOS-inspired design, built using vanilla HTML, CSS, and JavaScript. Features 60fps animations, full accessibility compliance, and zero external dependencies.
 
-![Calculator Preview](calculator/preview.png)
+<img src="calculator/preview.png" alt="Calculator Preview" width="300" />
 
 ## ✨ Features
 
