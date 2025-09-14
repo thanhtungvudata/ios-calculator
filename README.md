@@ -57,14 +57,14 @@ Simply open `calculator/index.html` in any modern web browser.
 │   ├── index.html             # Application entry point
 │   ├── css/styles.css         # Complete design system
 │   ├── js/calculator.js       # Calculator functionality
+│   ├── preview.png            # Calculator preview image
 │   └── README.md              # Application documentation
 ├── docs/                      # Project documentation
 │   └── archive/               # Complete project archive
-├── memory-bank/               # Development documentation
-│   ├── reflection.md          # Lessons learned
-│   ├── requirements.md        # Project specifications
-│   └── ...                    # Planning and creative docs
-└── calculator-poc/            # Proof of concept files
+├── calculator-poc/            # Proof of concept files
+├── README.md                  # Project overview and documentation
+├── LICENSE                    # MIT license
+└── .gitignore                 # Git ignore rules
 ```
 
 ## 🛠️ Technical Specifications
